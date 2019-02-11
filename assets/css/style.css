@@ -31,3 +31,10 @@ padding:100px;
 .waves-effect.waves-light.btn {
      background-color: #D77000
 }
+
+.materialboxed {
+    width: 200px;
+    height: 300px;
+    /* align-content: center; */
+    margin-left: 55px;
+}
