@@ -1,0 +1,15 @@
+#emoji{
+    background-color: #FDF8C1;
+}
+
+.nav-wrapper{
+    padding:10px;
+    margin:15px;
+    border:15px;
+}
+#upload{
+    align-content: center;
+    position: relative;
+    display: block;
+    
+}
