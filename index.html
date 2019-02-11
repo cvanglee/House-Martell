@@ -10,35 +10,41 @@
   <script src="assets/js/main.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
       <header id="mastHead">
         <h4>EmotifyMe</h4>
       </header>      
-      <div class="row">      
-        <div class="col s7 push-s5"><span class="flow-text"></span>
-          <div class="card-panel lighten-5 z-depth-1" id="emoji">
-            <div class="row valign-wrapper">
-              <div class="col s2">
-              </div>
-              <div class="col s10">
-                <span class="black-text">
-                  Girl, Don't feel so bad about your face.
-                </span>                
-              </div>              
+        <div class="row"> 
+        <div class="col s1"></div>
+          <div class="col s3"><span class="flow-text"></span>
+            <div class="center-align">
+              <button id= "upload" type="submit" class="waves-effect waves-light btn">Upload a Photo</button>
+              <img id="placeholder"><img src="assets/images/placeholder.jpeg" alt="" class="rectangle responsive-img"></img>
+              <button id= "confirm" type="submit" class="waves-effect waves-light btn">Confirm</button>
             </div>
-          </div>
-          <button id= "emojiCon" class="waves-effect waves-light btn">Confirm</button>
+          </div> 
+          <div class="col s1"></div>
+          <div class="col s6"><span class="flow-text"></span>
+            <div class="card-panel lighten-5 z-depth-1" id="emoji">
+              <div class="row valign-wrapper">
+                  <span class= "emojified">
+                      <img src= "assets/images/sadface.jpg">
+                  </span>
+                <div class="col s2">                
+                </div>
+                <div class="col s10">
+                  <span class="black-text">
+                    Girl, Don't feel so bad about your face.
+                  </span>                
+                </div>              
+              </div>
+            </div>
+            <button id= "share" type="submit" class="waves-effect waves-light btn">Share</button>
+          </div>  
+          <div class="col s1"></div>  
         </div>
-        <div class="col s5 pull-s7"><span class="flow-text"></span>
-          <div class="center-align">
-            <button id= "uploadEmo" class="waves-effect waves-light btn" id="buttons">Upload a Photo</button>
-            <img id="placeholder"><img src="assets/images/placeholder.jpeg" alt="" class="rectangle responsive-img"></img>
-            <button id= "emojiComf" class="waves-effect waves-light btn">Confirm</button>
-          </div>
-        </div>  
-      
-      
-      </div>
+
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

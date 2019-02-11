@@ -5,18 +5,16 @@
 }
 #emojiCon {
     float: right;
+}         
+.waves-effect.waves-light.btn {
+        background-color: #D77000;
+        border-radius: 15px;
+        margin-bottom: 15px;
 }
 
-button {
-    background: #FDF8C1; 
+.black-text {
+    text-align: right;
 }
-
-
-    
-   
-          
-    .waves-effect.waves-light.btn {
-        background-color: #D77000
-    }
-    
-    
+.row{
+    margin-top: 20px;
+}
