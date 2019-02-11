@@ -38,3 +38,12 @@ padding:100px;
     /* align-content: center; */
     margin-left: 55px;
 }
+
+.row { 
+    margin-top: 100px;
+}
+
+.emoticon {
+    height: 100px;
+    width: 100px;
+}
