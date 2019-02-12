@@ -245,8 +245,20 @@ function emotionCompare(e) {
         else {
             glassesText = "placeholder for dark 'sunglasses'"
         }
+        
         //beautyText
-        //dylan's code 
+        if(beautyScore > 0 && beautyScore <= 25){
+            beautyText = "placeholder for beauty"
+        };
+        if(beautyScore > 25 && beautyScore <= 50){
+            beautyText = "placeholder for beauty"
+        };
+        if(beautyScore > 50 && beautyScore <= 75){
+            beautyText = "placeholder for beauty"
+        };
+        if(beautyScore > 75 && beautyScore <= 100){
+            beautyText = "placeholder for beauty"
+        };
 
         //mouthText
         if (mouth > 50) {
