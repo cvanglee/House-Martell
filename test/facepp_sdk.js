@@ -330,6 +330,7 @@ function FACEPP(apikey, apisecret, isChina) {
                     highestEmotion = emotionNameArray[i];
                 }
             };
+            gitGiphy(highestEmotion);
             console.log(highestEmotion);
             console.log(emotionNameArray)
         

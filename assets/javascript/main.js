@@ -193,9 +193,23 @@ for (let i = 0; i < emotionValueArray.length; i++) {
         highestEmotion = emotionNameArray[i];
     }
 };
-console.log(highestEmotion);
-console.log(emotionNameArray)
-console.log(emotionValueArray)
+gitGiphy(highestEmotion);
+
+}
+var processBeautyScore = function(beautyScore){
+    score = beautyScore;
+    if(score > 0 && score <= 25){
+
+    };
+    if(score > 25 && score <= 50){
+
+    };
+    if(score > 50 && score <= 75){
+
+    };
+    if(score > 75 && score <= 100){
+        
+    };
 }
 
 
