@@ -217,14 +217,10 @@ var glassesText
 if (glasses === "none") {
     glassesText = "placeholder for no glasses"
 }
-else if (glasses === "light") {
+else if (glasses === "normal") {
     glassesText = "placeholder for light glasses"
 
 }
 else {
     glassesText = "placeholder for dark 'sunglasses'"
 }
-
-
-
-
