@@ -3,7 +3,7 @@
     padding: 5px;
     width: 100%;    
 }
-#logo{
+h4{
     font-weight:bold;
     font-size: 39px;
     color: #D77000;
@@ -13,7 +13,7 @@
 #share {
     float: right;
 }         
-.waves-effect.waves-light.btn {
+#confirm, #share, #upload {
         background-color: #D77000;
         border-radius: 15px;
         margin-bottom: 17px;

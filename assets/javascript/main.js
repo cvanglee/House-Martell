@@ -196,8 +196,34 @@ for (let i = 0; i < emotionValueArray.length; i++) {
 console.log(highestEmotion);
 console.log(emotionNameArray)
 console.log(emotionValueArray)
+
+
+if(age > 0 && age <= 20){}
+if(age > 20 && age <= 30){}
+if(age > 30 && age <= 40){}
+if(age > 40&& age <= 50){}
+
+var genderText
+
+if (gender === "male") {
+    genderText = "placeholder for male"
+}
+else {
+    genderText = "placeholder for female"
 }
 
+var glassesText
+
+if (glasses === "none") {
+    glassesText = "placeholder for no glasses"
+}
+else if (glasses === "light") {
+    glassesText = "placeholder for light glasses"
+
+}
+else {
+    glassesText = "placeholder for dark 'sunglasses'"
+}
 
 
 
