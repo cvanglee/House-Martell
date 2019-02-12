@@ -1,20 +1,35 @@
-#mastHead{
+#mastHead{    
     background-color: #FDF8C1;
-    padding: 20px;
-    color: #D77000
+    padding: 5px;
+    width: 100%;    
 }
-#emojiCon {
+#logo{
+    font-weight:bold;
+    font-size: 39px;
+    color: #D77000;
+    margin-left: 40px;
+    font-family: ‘Righteous’, cursive;
+    }
+#share {
     float: right;
 }         
 .waves-effect.waves-light.btn {
         background-color: #D77000;
         border-radius: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 17px;
+        margin-top: 10px;
+        font-family: ‘Roboto’, sans-serif;
 }
 
-.black-text {
+#black-text {
     text-align: right;
+    font-family: ‘Oxygen’, sans-serif;
 }
 .row{
-    margin-top: 20px;
+    margin-top: 50px;
+}
+#emojified{
+    margin-left: 30px;
+    max-width: 210px;
+    max-height: 210px;
 }
