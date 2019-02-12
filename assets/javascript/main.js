@@ -201,9 +201,7 @@ function emotionCompare(e) {
     console.log(highestEmotion);
     console.log(emotionNameArray)
     console.log(emotionValueArray)
-
-
-
+}
     //age 
     //create a function to decide the texts we need to return
     function textGenerate() {
@@ -227,25 +225,19 @@ function emotionCompare(e) {
         ageText = "placeholder40to50"
 
         //generate genderText
-        if (gender === "male") {
-            gendertext = "placeholder for male"
-        }
-        else {
-            gendertext = "placeholder for female"
-        }
-
-
-        //glassesText
-        if (glasses === "none") {
-            glassesText = "placeholder for no glasses"
-        }
-        else if (glasses === "normal") {
-            glassesText = "placeholder for light glasses"
-        }
-        else {
-            glassesText = "placeholder for dark 'sunglasses'"
-        }
-        
+        if (gender === "male" && age > 0 && age <= 29) {
+            genderText = "Dude"
+        };
+        if (gender === "male" && age >= 30) {
+            genderText = "Sir"
+        };
+        if (gender === "female" && age > 0 && age <= 25) {
+            genderText = "Girl"
+        };
+        if (gender === "female" && age >= 26) {
+            genderText = "Ma'am"
+        };
+                
         //beautyText
         if(beautyScore > 0 && beautyScore <= 25){
             beautyText = "placeholder for beauty"
