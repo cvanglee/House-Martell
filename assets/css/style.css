@@ -1,12 +1,16 @@
+body{
+    background: #1F263A;
+}
+
 #mastHead{    
-    background-color: #FDF8C1;
+    background-color: #6d4c41;
     padding: 8px 0px 8px 2px;
     width: 100%;    
 }
 #logo{
     font-weight:bold;
     font-size: 39px;
-    color: #D77000;
+    color: #F6FBFB;
     margin-left: 40px;
     font-family: 'Righteous', cursive;
 }
@@ -14,7 +18,6 @@
     float: right;
 }         
 #upload, #confirm, #share {
-        background-color: #D77000;
         border-radius: 15px;
         margin-bottom: 17px;
         margin-top: 10px;
@@ -39,14 +42,14 @@
 }
 
 #avatarimg {
-    max-height: 80%;
+    width: 100%;
 }
 
 .speech-bubble {
     position: relative;
     min-height: 30px;
     padding: 5px 0px 5px 10px;
-	background: #FDF8C1;
+	background: #F6FBFB;
 	border-radius: .8em;
 }
 
@@ -58,8 +61,12 @@
 	width: 0;
 	height: 0;
 	border: 8px solid transparent;
-	border-right-color: #FDF8C1;
+	border-right-color: #F6FBFB;
 	border-left: 0;
 	margin-top: -8px;
 	margin-left: -8px;
+}
+
+#gif{
+    place-content: center;
 }
