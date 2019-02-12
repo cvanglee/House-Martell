@@ -266,11 +266,12 @@ function emotionCompare(e) {
         } else {
             mouthText = ""
         }
+        gitGiphy(highestEmotion);
 
     }
 
 };
-gitGiphy(highestEmotion);
+
 
 
 

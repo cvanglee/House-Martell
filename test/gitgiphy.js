@@ -57,8 +57,8 @@ var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FH40z8RM9VJhyEk0ML5
     sayingDiv.text('weird emotion');
     }
     // displaying giphy and text
-    $("#emoji").append(emoticonImage);
-    $("#emoji").append(sayingDiv);
+    $("#avatar").append(emoticonImage);
+    $("#avatar").append(sayingDiv);
     
     console.log(emoticon);
   });
