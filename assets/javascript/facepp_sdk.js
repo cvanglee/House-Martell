@@ -306,38 +306,8 @@ function FACEPP(apikey, apisecret, isChina) {
         }).then(function (e) {
             console.log(e)
             emotionCompare(e)
+
         })
     }
 }
 
-function emotionCompare(e) {
-var emotionNameArray = [
-    "anger",
-    "disgust",
-    "fear",
-    "happiness",
-    "neutral",
-    "sadness",
-    "surprise"
-]
-var emotionValueArray = [];
-emotionValueArray.push(e.faces[0].attributes.emotion.anger)
-emotionValueArray.push(e.faces[0].attributes.emotion.disgust)
-emotionValueArray.push(e.faces[0].attributes.emotion.fear)
-emotionValueArray.push(e.faces[0].attributes.emotion.happiness)
-emotionValueArray.push(e.faces[0].attributes.emotion.neutral)
-emotionValueArray.push(e.faces[0].attributes.emotion.sadness)
-emotionValueArray.push(e.faces[0].attributes.emotion.surprise)
-let highest = 0;
-let highestEmotion = 0;
-for (let i = 0; i < emotionValueArray.length; i++) {
-    if (emotionValueArray[i] > highest) {
-        highest = emotionValueArray[i];
-        highestEmotion = emotionNameArray[i];
-    }
-};
-console.log(highestEmotion);
-console.log(emotionNameArray)
-console.log(emotionValueArray)
-
-}
