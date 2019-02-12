@@ -1,19 +1,19 @@
 #mastHead{    
     background-color: #FDF8C1;
-    padding: 5px;
+    padding: 8px 0px 8px 2px;
     width: 100%;    
 }
-h4{
+#logo{
     font-weight:bold;
     font-size: 39px;
     color: #D77000;
     margin-left: 40px;
-    font-family: ‘Righteous’, cursive;
-    }
+    font-family: 'Righteous', cursive;
+}
 #share {
     float: right;
 }         
-#confirm, #share, #upload {
+#upload, #confirm, #share {
         background-color: #D77000;
         border-radius: 15px;
         margin-bottom: 17px;
@@ -32,4 +32,34 @@ h4{
     margin-left: 30px;
     max-width: 210px;
     max-height: 210px;
+}
+
+#text, #avatar{
+    min-height: 120px;
+}
+
+#avatarimg {
+    width: 100%;
+}
+
+.speech-bubble {
+    position: relative;
+    min-height: 30px;
+    padding: 5px 0px 5px 10px;
+	background: #FDF8C1;
+	border-radius: .8em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	border-right-color: #FDF8C1;
+	border-left: 0;
+	margin-top: -8px;
+	margin-left: -8px;
 }
