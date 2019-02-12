@@ -41,7 +41,7 @@ const IMAGE_MERGEFACE = "imagepp/v1/mergeface";
 //OCR 识别身份证/驾驶证/行驶证/银行卡,Only for china
 
 // 美颜api
-const FACE_BEAUTY ="facepp/beta/beautify";
+const FACE_BEAUTY = "facepp/beta/beautify";
 
 //证件识别
 const OCR_CN = "cardpp/";
@@ -52,7 +52,7 @@ const OCR_BNAKCARD = OCR_CN + "v1/ocrbankcard";
 
 //车牌识别/文字识别/场景识别/文字识别
 const IMAGE_CN = "imagepp/";
-const IMAGE_Plate  = IMAGE_CN + "v1/licenseplate";
+const IMAGE_Plate = IMAGE_CN + "v1/licenseplate";
 const IMAGE_Object = IMAGE_CN + "beta/detectsceneandobject";
 const IMAGE_Text = IMAGE_CN + "v1/recognizetext";
 
@@ -65,7 +65,7 @@ const IMAGE_Text = IMAGE_CN + "v1/recognizetext";
 
 function FACEPP(apikey, apisecret, isChina) {
 
-    if (apikey == null || apisecret == null){
+    if (apikey == null || apisecret == null) {
         alert('apikey 或 apisecret 不能为空');
         console.log('apikey or apisecret can not be null');
     }
@@ -74,7 +74,7 @@ function FACEPP(apikey, apisecret, isChina) {
     this.apisecret = apisecret;
     this.isChina = isChina;
 
-    if (isChina){
+    if (isChina) {
         this.baseurl = FACE_HOST_US;
 
     } else {
@@ -82,11 +82,11 @@ function FACEPP(apikey, apisecret, isChina) {
     }
 
     //人脸检测
-    this.detectFace = function (param,success, failed) {
+    this.detectFace = function (param, success, failed) {
 
         var url = this.baseurl + FACE_DETECT;
 
-        this.request(url,param,success, failed);
+        this.request(url, param, success, failed);
     };
 
     //人脸比对
@@ -236,7 +236,7 @@ function FACEPP(apikey, apisecret, isChina) {
     };
 
     //行驶证识别
-    this.OCRVehicleLicense= function (param, success, failed) {
+    this.OCRVehicleLicense = function (param, success, failed) {
         var url = this.baseurl + OCR_VEHICLE_LICENSE;
         this.request(url, param, success, failed);
     };
@@ -254,7 +254,7 @@ function FACEPP(apikey, apisecret, isChina) {
     };
 
     //文字识别
-    this.OCRText  =  function (param, success, failed) {
+    this.OCRText = function (param, success, failed) {
         var url = this.baseurl + IMAGE_Text;
         this.request(url, param, success, failed);
     };
@@ -268,7 +268,7 @@ function FACEPP(apikey, apisecret, isChina) {
     /* base64转二进制
      * 传入base64数据
      */
-    this.dataURItoBlob = function(dataURI) { // 图片转成Buffer
+    this.dataURItoBlob = function (dataURI) { // 图片转成Buffer
         const byteString = atob(dataURI.split(',')[1]);
         const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
         const ab = new ArrayBuffer(byteString.length);
@@ -276,7 +276,7 @@ function FACEPP(apikey, apisecret, isChina) {
         for (let i = 0; i < byteString.length; i++) {
             ia[i] = byteString.charCodeAt(i);
         }
-        return new Blob([ab], {type: mimeString});
+        return new Blob([ab], { type: mimeString });
     }
 
     /* POST请求
@@ -287,11 +287,11 @@ function FACEPP(apikey, apisecret, isChina) {
 
         const formData = new FormData();
 
-        formData.append('api_key',this.apikey);
-        formData.append('api_secret',this.apisecret);
+        formData.append('api_key', this.apikey);
+        formData.append('api_secret', this.apisecret);
 
-        for (var key in dic){//遍历拼接
-            formData.append(key,dic[key]);
+        for (var key in dic) {//遍历拼接
+            formData.append(key, dic[key]);
         }
 
         $.ajax({
@@ -302,10 +302,42 @@ function FACEPP(apikey, apisecret, isChina) {
             processData: false,
             contentType: false,
             timeout: 20000,//20秒超时时间
-        // }).done(success).fail(failed);
-        }).then(function(e){
+            // }).done(success).fail(failed);
+        }).then(function (e) {
             console.log(e)
-            compareEmotion()
+            emotionCompare(e)
         })
     }
+}
+
+function emotionCompare(e) {
+var emotionNameArray = [
+    "anger",
+    "disgust",
+    "fear",
+    "happiness",
+    "neutral",
+    "sadness",
+    "surprise"
+]
+var emotionValueArray = [];
+emotionValueArray.push(e.faces[0].attributes.emotion.anger)
+emotionValueArray.push(e.faces[0].attributes.emotion.disgust)
+emotionValueArray.push(e.faces[0].attributes.emotion.fear)
+emotionValueArray.push(e.faces[0].attributes.emotion.happiness)
+emotionValueArray.push(e.faces[0].attributes.emotion.neutral)
+emotionValueArray.push(e.faces[0].attributes.emotion.sadness)
+emotionValueArray.push(e.faces[0].attributes.emotion.surprise)
+let highest = 0;
+let highestEmotion = 0;
+for (let i = 0; i < emotionValueArray.length; i++) {
+    if (emotionValueArray[i] > highest) {
+        highest = emotionValueArray[i];
+        highestEmotion = emotionNameArray[i];
+    }
+};
+console.log(highestEmotion);
+console.log(emotionNameArray)
+console.log(emotionValueArray)
+
 }
