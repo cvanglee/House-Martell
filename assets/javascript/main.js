@@ -206,7 +206,7 @@ function emotionCompare(e) {
 
     //age 
     //create a function to decide the texts we need to return
-    function textGenerate {
+    function textGenerate() {
         var ageText
         var genderText
         var glassesText
@@ -268,7 +268,9 @@ function emotionCompare(e) {
         }
 
     }
-}
+
+};
+gitGiphy(highestEmotion);
 
 
 
