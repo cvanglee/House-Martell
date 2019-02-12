@@ -68,8 +68,8 @@ function success(e) {
     console.log("run")
     var emotionNameArray = [
         "anger",
-		"disgust",
-		"fear",
+        "disgust",
+        "fear",
         "happiness",
         "neutral",
         "sadness",
@@ -167,36 +167,110 @@ function fixOrientention(base64Image, imageView) {
 }
 
 
+
+//emotion
+//create a function to save and compare emotion
 function emotionCompare(e) {
-var emotionNameArray = [
-    "anger",
-    "disgust",
-    "fear",
-    "happiness",
-    "neutral",
-    "sadness",
-    "surprise"
-]
-var emotionValueArray = [];
-emotionValueArray.push(e.faces[0].attributes.emotion.anger)
-emotionValueArray.push(e.faces[0].attributes.emotion.disgust)
-emotionValueArray.push(e.faces[0].attributes.emotion.fear)
-emotionValueArray.push(e.faces[0].attributes.emotion.happiness)
-emotionValueArray.push(e.faces[0].attributes.emotion.neutral)
-emotionValueArray.push(e.faces[0].attributes.emotion.sadness)
-emotionValueArray.push(e.faces[0].attributes.emotion.surprise)
-let highest = 0;
-let highestEmotion = 0;
-for (let i = 0; i < emotionValueArray.length; i++) {
-    if (emotionValueArray[i] > highest) {
-        highest = emotionValueArray[i];
-        highestEmotion = emotionNameArray[i];
+    var emotionNameArray = [
+        "anger",
+        "disgust",
+        "fear",
+        "happiness",
+        "neutral",
+        "sadness",
+        "surprise"
+    ]
+
+
+    var emotionValueArray = [];
+    emotionValueArray.push(e.faces[0].attributes.emotion.anger)
+    emotionValueArray.push(e.faces[0].attributes.emotion.disgust)
+    emotionValueArray.push(e.faces[0].attributes.emotion.fear)
+    emotionValueArray.push(e.faces[0].attributes.emotion.happiness)
+    emotionValueArray.push(e.faces[0].attributes.emotion.neutral)
+    emotionValueArray.push(e.faces[0].attributes.emotion.sadness)
+    emotionValueArray.push(e.faces[0].attributes.emotion.surprise)
+    let highest = 0;
+    let highestEmotion = 0;
+    for (let i = 0; i < emotionValueArray.length; i++) {
+        if (emotionValueArray[i] > highest) {
+            highest = emotionValueArray[i];
+            highestEmotion = emotionNameArray[i];
+        }
+    };
+    console.log(highestEmotion);
+    console.log(emotionNameArray)
+    console.log(emotionValueArray)
+
+
+
+    //age 
+    //create a function to decide the texts we need to return
+    function textGenerate {
+        var ageText
+        var genderText
+        var glassesText
+        var beautyText
+        var mouthText
+
+        //generate ageText
+        if (age > 0 && age <= 20) {
+            ageText = "placeholder0to20"
+        }
+        if (age > 20 && age <= 30) {
+            ageText = "placeholder20to30"
+        }
+        if (age > 30 && age <= 40) {
+            ageText = "placeholder30to40"
+        }
+        if (age > 40 && age <= 50) { }
+        ageText = "placeholder40to50"
+
+        //generate genderText
+        if (gender === "male") {
+            gendertext = "placeholder for male"
+        }
+        else {
+            gendertext = "placeholder for female"
+        }
+
+
+        //glassesText
+        if (glasses === "none") {
+            glassesText = "placeholder for no glasses"
+        }
+        else if (glasses === "normal") {
+            glassesText = "placeholder for light glasses"
+        }
+        else {
+            glassesText = "placeholder for dark 'sunglasses'"
+        }
+        
+        //beautyText
+        if(beautyScore > 0 && beautyScore <= 25){
+            beautyText = "placeholder for beauty"
+        };
+        if(beautyScore > 25 && beautyScore <= 50){
+            beautyText = "placeholder for beauty"
+        };
+        if(beautyScore > 50 && beautyScore <= 75){
+            beautyText = "placeholder for beauty"
+        };
+        if(beautyScore > 75 && beautyScore <= 100){
+            beautyText = "placeholder for beauty"
+        };
+
+        //mouthText
+        if (mouth > 50) {
+            mouthText = "placeholder for mouth open"
+        } else {
+            mouthText = ""
+        }
+
     }
-};
-console.log(highestEmotion);
-console.log(emotionNameArray)
-console.log(emotionValueArray)
 }
+
+
 
 
 
