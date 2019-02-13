@@ -238,14 +238,15 @@ function textGenerate(e) {
     var gender = e.faces[0].attributes.gender.value;
     var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score) / 2;
 
-    function random (array) {
+    function random(array) {
         randomGenerated = Math.floor(Math.random() * array.length);
         return randomGenerated
     }
 
     // creating sayings objects for all of the texts we have
     var ageArrays = {
-        twentyUnder: ["Be yourself; everyone else is already taken",
+        twentyUnder: [
+            "Be yourself; everyone else is already taken",
             "You have to be odd to be number 1",
             "Children are the leading cause of old age.",
             "It’s alive! It’s alive!",
@@ -256,39 +257,115 @@ function textGenerate(e) {
             "Old age is like everything else; to make a success of it, you’ve got to start young."
         ],
 
-        thirtyUnder: ["Success in your twenties is more about setting the table than enjoying the feast",
+        thirtyUnder: [
+            "Success in your twenties is more about setting the table than enjoying the feast",
             "Being an adult is just walking around wondering what you're forgetting.",
             "Remember how when you were little you could just rip off your diaper and run around naked and everyone thought it was funny?",
         ],
-        fortyUnder: ["Surfing while middle-aged requires a lot of forty, dude.",
+        fortyUnder: [
+            "Surfing while middle-aged requires a lot of forty, dude.",
             "As you get older, three things happen: The first is your memory goes, and I can't remember the other two",
             "Transitional age is when during a hot day you don't know what you want – ice cream or beer.",
             "We grow too soon old and too late smart.",
-            "ife expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon."
+            "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon."
         ],
-        fiftyUnder: ["Middle age is when you still believe you’ll feel better in the morning", "You are twice as sexy as two 20 somethings.", "Middle age is when you're faced with two temptations and you choose the one that will get you home by nine o'clock"],
-        sixtyOver: ["The older you get, the earlier it gets late.", "Pastry chefs know that old age crepes up on you.", "You're old enough to remember when emojis were called hieroglyphics."]
+        fiftyUnder: [
+            "Middle age is when you still believe you’ll feel better in the morning", 
+             "You are twice as sexy as two 20 somethings.", 
+             "Middle age is when you're faced with two temptations and you choose the one that will get you home by nine o'clock",
+             "It’s not the years, honey. It’s the mileage.",
+            "If you want to know what you’ll look like in ten years, look in the mirror after you’ve run a marathon.",
+            "You have everything now you had twenty years ago – except now it’s lower."
+        ],
+        sixtyOver: [
+            "The older you get, the earlier it gets late.", 
+            "Pastry chefs know that old age crepes up on you.", 
+            "You're old enough to remember when emojis were called hieroglyphics.",
+            "She is so old… she was the waitress at the last supper.",
+            "Eighty is a wonderful age… especially if you’re ninety.",
+            "I don't need you to remind me of my age; I have a bladder to do that for me.",
+            "You know you are getting older when “Happy Hour” is a nap."
+        ]
     };
     var beautyArrays = {
-        quarter1: ["If you were a chicken, you'd be impeccable.",
+        quarter1: [
+            "If you were a chicken, you'd be impeccable.",
             "I wish you were cross-eyed so I could see you twice.",
-            "Beauty is only skin deep ...but ugly goes all the way to the bone!"],
-        quarter2: ["Is your body from McDonald's? Cause I'm lovin' it!",
-            "smile is an inexpensive way to improve your looks",
-            "I know milk does a body good, but damn girl, how much have you been drinking?"],
-        quarter3: ["If you were a library book, I’d check you out!",
+            "Beauty is only skin deep ...but ugly goes all the way to the bone!",
+            "The greatest treasures in you are those invisible to the eye but found by the heart.",
+            "The most beautiful makeup is passion, but cosmetics are easier to buy.",
+            "You have the body of a 25 year old supermodel, but it takes up too much space in your freezer.",
+            "You know ... beauty is in the eye of the beer holder."
+        ],
+
+        quarter2: [
+            "Is your body from McDonald's? Cause I'm lovin' it!",
+            "I know milk does a body good, but girl, how much have you been drinking?",
+            "Excuse me? Do you work at Little Ceasars? Cuz Ur Hot And I'm Ready.",
+            "You’re beautiful no matter what anybody thinks.",
+            "You're so pretty, you could be in a beer commercial.",
+        ],
+        
+        quarter3: [
+            "If you were a library book, I’d check you out!",
             "Does your left eye hurt? Because you’ve been looking right all day.",
-            "There's no real difference between me and George Clooney."],
-        quarter4: ["Are you French, because Eiffel for you!"],
+            "There's no real difference between you and George Clooney.",
+            "A pretty face doesn’t mean a pretty heart."
+        ],
+        
+        quarter4: [
+            "Are you French, because Eiffel for you!",
+            "I must be in a museum, because you are truly a work of art!", 
+            "Are you from Tennessee? Because you're the only 10 I see!",
+            "If I freeze, it's not a computer virus. I was just stunned by your beauty.",
+            "I need more than 140 characters to tell you how beautiful you are."
+        ],
     };
     var emotionArrays = {
-        happiness: ["Yay!", "Whoever is happy will make others happy", "The pursuit of happiness is real", "Be happy with what you have. Be excited about what you want", "Have only two kinds of days: happy and hysterically happy"],
-        anger: ["Argh..", "Anger is a short madness", "Don't get your back up", "If you kick a stone in anger you will hurt your foot", "He who angers you conquers you"],
-        disgust: ["Yuck!", "Gross", "distasteful", "filthy", "nasty"],
-        fear: ["Fear is only as deep as the mind allows", "Fear is faith that it won't work out", "Fear is a darkroom where negatives develop", "But fear doesn't need doors and windows. It works from the inside", "Fear defeats more people than any other one thing in the world"],
-        neutral: ["ehhh...", "The end doesn't justify the means", "A rule isn't unfair if it applies to everyone", "Give good and get good", "If we do not maintain justice, justice will not maintain us"],
-        sadness: ["Tears come from the heart and not from the brain", "You cannot protect yourself from sadness without protecting yourself from happiness.", "Breathing is hard. When you cry so much, it makes you realize that breathing is hard.", "Things change. And friends leave. Life doesn't stop for anybody.", "Remember, it will get better!"],
-        surprise: ["Surprise!", "Expect nothing. Live frugally on surprise.", "Do not know yourself. I want to continue to surprise me.   ", "Wait long enough, and people will surprise and impress you", "The idea of waiting for something makes it more exciting"],
+        happiness: [
+            'I see "Yay!" in your face', 
+            "Whoever is happy will make others happy", 
+            "Your pursuit of happiness is real", 
+            "Be happy with what you have. Be excited about what you want", 
+            "I see, you have only two kinds of days: happy and hysterically happy"
+        ],
+        anger: [
+            `Don't use your face to say "Argh.."`, 
+            "You know, anger is a short madness", 
+            "Don't get your back up", 
+            "You know, if you kick a stone in anger you will hurt your foot", 
+            "He who angers you conquers you"
+        ],
+        disgust: [
+            "What disgusted you?", 
+            "Will you feel better if I give you a glass of water?", 
+            "Close your eyes and get rid of those filthy scenes.", 
+        ],
+        fear: [
+            "Fear is only as deep as the mind allows", 
+            "Fear is faith that it won't work out", 
+            "Fear is a darkroom where negatives develop", 
+            "But fear doesn't need doors and windows. It works from the inside", 
+            "Fear defeats more people than any other one thing in the world"
+        ],
+        neutral: [
+            "ehhh... why're you wearing that pocker face?", 
+            "A smile is an inexpensive way to improve your looks", 
+            "Give me a smile, dear", 
+        ],
+        sadness: [
+            "Tears come from the heart and not from the brain", 
+            "You cannot protect yourself from sadness without protecting yourself from happiness.", 
+            "Breathing is hard. When you cry so much, it makes you realize that breathing is hard.", 
+            "Things change. And friends leave. Life doesn't stop for anybody.", 
+            "Remember, it will get better!"
+        ],
+
+        surprise: [
+            "What's so surprising?", 
+            "Expect nothing. Live frugally on surprise.", 
+            "The idea of waiting for something makes it more exciting"
+        ],
     };
 
 
@@ -364,9 +441,6 @@ function textGenerate(e) {
     }
 
 
-
-
-
     //beautyText
     if (beautyScore > 0 && beautyScore <= 25) {
         randNum = random(beautyArrays.quarter1)
@@ -384,21 +458,45 @@ function textGenerate(e) {
         randNum = random(beautyArrays.quarter4)
         beautyText = (beautyArrays.quarter4[randNum])
     };
-    console.log(ageText)
-    console.log(emotionText)
-    console.log(beautyText)
-    display(ageText)
+
+    var displayArrays = [
+        ageText,
+        emotionText,
+        beautyText,
+    ]
+
+    console.log(displayArrays)
+    console.log(displayArrays.length)
+    display(displayArrays) 
 }
+    
+//Yuwen's way to display the lines letter by letter
+    var a = -1;
+    function display(displayArrays) {
+        a = a+1
+        if (a < displayArrays.length) {
+            addedTime = 0;
+            textToProcess = displayArrays[a];
+            console.log(textToProcess)
+            appendChatBox()
+            for (let i in textToProcess) {
+                addedTime = addedTime + 50;
+                setTimeout(function () {
+                    $("#" + count).append(textToProcess[i]);
+                    textInside = $("#" + count).text();
+                    if (textInside == textToProcess) {
+                        display(displayArrays) 
+                    }
+                }, addedTime);
+            }
+            bubbleSet = true;
 
-function display(text) {
-    console.log("running!")
-    appendChatBox();
-    styleBubbleText(text)
-}
+        }
+
+    }
 
 
-
-// create a function to append chat bubble with text to the screen
+// create a function to append empty chat bubble to the screen
 appendChatBox = function () {
     count++
     $("#text").append(
@@ -408,39 +506,9 @@ appendChatBox = function () {
 
 
 
-function actionBarSetTimeout(char, addedTime) {
-    setTimeout(function () {
 
-        $("#" + divId).append(char);
-        textInside = $("#" + divId).html();
-        if (textInside == textToProcess) {
-            if (count === 1) {
-                display(emotionText)
-            }
-            if (doneTyping === true &&
-                count === 2) {
-                display(beautyText)
-            }
-            if (count === 3) {
-                count = 0
-            }
-            doneTyping = true;
-        }
-    }, addedTime);
-}
 //===============================================
-let styleBubbleText = function (text) {
-    addedTime = 0;
-    textToProcess = text;
-    console.log(text)
-    doneTyping = false;
-    divId = count
-    for (i = 0; i < textToProcess.length; i++) {
-        addedTime += 50;
-        actionBarSetTimeout(textToProcess[i], addedTime);
-    }
 
 
-}
 
 
