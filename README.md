@@ -4,8 +4,6 @@ GiphyToMe is a facial recognition application where you may upload a photo in or
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 To start this process, visit https://giphy-to-me.herokuapp.com/index.html and upload a photo. As soon as you have selected your photo, a gif and randomly generated texts will populate the screen. You may also share your results by clicking the "Share" button underneath the populated text. 
 
 ### Prerequisites
