@@ -142,6 +142,3 @@ function FACEPP(apikey, apisecret, isChina) {
     }
 }
 
-function error() {
-    $("#welcome").text("That didn't work well. Try another one, please!")
-}

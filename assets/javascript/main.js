@@ -317,7 +317,7 @@ function textGenerate(e) {
             "Are you made of copper and tellurium? Because you're CuTe",
             "What's a nice ghoul like you doing in a crypt like this?",
             "Adolescence is that period in a kid’s life when parents become more difficult.",
-            "Zeal: A certain nervous disorder afflicting the young and inexperienced.",
+            "A certain nervous disorder afflicting the young and inexperienced.",
             "Old age is like everything else; to make a success of it, you’ve got to start young."
         ],
 
