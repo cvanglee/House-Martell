@@ -9,7 +9,6 @@ var emotionText
 
 
 function gitGiphy(emotion) {
-    $("#emoji").empty();
     console.log("hello");
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FH40z8RM9VJhyEk0ML5R4TFfhpuV7uPV&q=" + emotion + "&limit=100"
     $.ajax({
@@ -239,18 +238,47 @@ function textGenerate(e) {
     var gender = e.faces[0].attributes.gender.value;
     var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score) / 2;
 
+    function random (array) {
+        randomGenerated = Math.floor(Math.random() * array.length);
+        return randomGenerated
+    }
+
     // creating sayings objects for all of the texts we have
     var ageArrays = {
-        twentyUnder: ["Be yourself; everyone else is already taken", "You have to be odd to be number 1", "Children are the leading cause of old age."],
-        thirtyUnder: ["Success in your twenties is more about setting the table than enjoying the feast", "Being an adult is just walking around wondering what you're forgetting.", "Remember how when you were little you could just rip off your diaper and run around naked and everyone thought it was funny?"],
-        fortyUnder: ["Surfing while middle-aged requires a lot of forty, dude.", "As you get older, three things happen: The first is your memory goes, and I can't remember the other two", "Transitional age is when during a hot day you don't know what you want – ice cream or beer."],
+        twentyUnder: ["Be yourself; everyone else is already taken",
+            "You have to be odd to be number 1",
+            "Children are the leading cause of old age.",
+            "It’s alive! It’s alive!",
+            "Are you made of copper and tellurium? Because you're CuTe",
+            "What's a nice ghoul like you doing in a crypt like this?",
+            "Adolescence is that period in a kid’s life when parents become more difficult.",
+            "Zeal: A certain nervous disorder afflicting the young and inexperienced.",
+            "Old age is like everything else; to make a success of it, you’ve got to start young."
+        ],
+
+        thirtyUnder: ["Success in your twenties is more about setting the table than enjoying the feast",
+            "Being an adult is just walking around wondering what you're forgetting.",
+            "Remember how when you were little you could just rip off your diaper and run around naked and everyone thought it was funny?",
+        ],
+        fortyUnder: ["Surfing while middle-aged requires a lot of forty, dude.",
+            "As you get older, three things happen: The first is your memory goes, and I can't remember the other two",
+            "Transitional age is when during a hot day you don't know what you want – ice cream or beer.",
+            "We grow too soon old and too late smart.",
+            "ife expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon."
+        ],
         fiftyUnder: ["Middle age is when you still believe you’ll feel better in the morning", "You are twice as sexy as two 20 somethings.", "Middle age is when you're faced with two temptations and you choose the one that will get you home by nine o'clock"],
         sixtyOver: ["The older you get, the earlier it gets late.", "Pastry chefs know that old age crepes up on you.", "You're old enough to remember when emojis were called hieroglyphics."]
     };
     var beautyArrays = {
-        quarter1: ["If you were a chicken", "you'd be impeccable. , I wish you were cross-eyed so I could see you twice.", "Beauty is only skin deep ...but ugly goes all the way to the bone!"],
-        quarter2: ["Is your body from McDonald's? Cause I'm lovin' it!", "smile is an inexpensive way to improve your looks", "I know milk does a body good, but damn girl, how much have you been drinking?"],
-        quarter3: ["If you were a library book, I’d check you out!", "Does your left eye hurt? Because you’ve been looking right all day.", "There's no real difference between me and George Clooney."],
+        quarter1: ["If you were a chicken, you'd be impeccable.",
+            "I wish you were cross-eyed so I could see you twice.",
+            "Beauty is only skin deep ...but ugly goes all the way to the bone!"],
+        quarter2: ["Is your body from McDonald's? Cause I'm lovin' it!",
+            "smile is an inexpensive way to improve your looks",
+            "I know milk does a body good, but damn girl, how much have you been drinking?"],
+        quarter3: ["If you were a library book, I’d check you out!",
+            "Does your left eye hurt? Because you’ve been looking right all day.",
+            "There's no real difference between me and George Clooney."],
         quarter4: ["Are you French, because Eiffel for you!"],
     };
     var emotionArrays = {
@@ -279,55 +307,56 @@ function textGenerate(e) {
         genderText = "Ma'am, "
     };
 
+
     //generate ageText
     if (age > 0 && age <= 20) {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(ageArrays.twentyUnder)
         ageText = genderText + ageArrays.twentyUnder[randNum];
     }
     if (age > 20 && age <= 30) {
-        randNum = Math.floor(Math.random(ageArrays.thirtyUnder.length));
+        randNum = random(ageArrays.thirtyUnder)
         ageText = genderText + ageArrays.thirtyUnder[randNum];
     }
     if (age > 30 && age <= 40) {
-        randNum = Math.floor(Math.random(ageArrays.fortyUnder.length));
+        randNum = random(ageArrays.fortyUnder)
         ageText = genderText + ageArrays.fortyUnder[randNum];
     }
     if (age > 40 && age <= 50) {
-        randNum = Math.floor(Math.random(ageArrays.fiftyUnder.length));
+        randNum = random(ageArrays.fiftyUnder)
         ageText = genderText + ageArrays.fiftyUnder[randNum];
     }
     if (age > 60) {
-        randNum = Math.floor(Math.random(ageArrays.sixtyOver.length));
+        randNum = random(ageArrays.sixtyOver)
         ageText = genderText + ageArrays.sixtyOver[randNum];
     }
 
     // picking the emotion text to display 
     if (highestEmotion === 'happiness') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.happiness)
         emotionText = (emotionArrays.happiness[randNum]);
     }
     else if (highestEmotion === 'anger') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.anger)
         emotionText = (emotionArrays.anger[randNum]);
     }
     else if (highestEmotion === 'disgust') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.disgust)
         emotionText = (emotionArrays.disgust[randNum]);
     }
     else if (highestEmotion === 'fear') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.fear)
         emotionText = (emotionArrays.fear[randNum]);
     }
     else if (highestEmotion === 'neutral') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.neutral)
         emotionText = (emotionArrays.neutral[randNum]);
     }
     else if (highestEmotion === 'sadness') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.sadness)
         emotionText = (emotionArrays.sadness[randNum]);
     }
     else if (highestEmotion === 'surprise') {
-        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        randNum = random(emotionArrays.surprise)
         emotionText = (emotionArrays.surprise[randNum]);
     }
     else {
@@ -340,15 +369,19 @@ function textGenerate(e) {
 
     //beautyText
     if (beautyScore > 0 && beautyScore <= 25) {
+        randNum = random(beautyArrays.quarter1)
         beautyText = (beautyArrays.quarter1[randNum])
     };
     if (beautyScore > 25 && beautyScore <= 50) {
+        randNum = random(beautyArrays.quarter2)
         beautyText = (beautyArrays.quarter2[randNum])
     };
     if (beautyScore > 50 && beautyScore <= 75) {
+        randNum = random(beautyArrays.quarter3)
         beautyText = (beautyArrays.quarter3[randNum])
     };
     if (beautyScore > 75 && beautyScore <= 100) {
+        randNum = random(beautyArrays.quarter4)
         beautyText = (beautyArrays.quarter4[randNum])
     };
     console.log(ageText)
@@ -357,58 +390,57 @@ function textGenerate(e) {
     display(ageText)
 }
 
-    function display(text) {
-        console.log("running!")
-        appendChatBox();
-        styleBubbleText(text)
-    }
+function display(text) {
+    console.log("running!")
+    appendChatBox();
+    styleBubbleText(text)
+}
 
 
 
-    // create a function to append chat bubble with text to the screen
-    appendChatBox = function () {
-        count++
-        $("#text").append(
-            '<div id = "' + count + '" class= "speech-bubble"></div>'
-        )
-    }
+// create a function to append chat bubble with text to the screen
+appendChatBox = function () {
+    count++
+    $("#text").append(
+        '<div id = "' + count + '" class= "speech-bubble"></div>'
+    )
+}
 
 
 
-    function actionBarSetTimeout(char, addedTime) {
-        setTimeout(function () {
-            
-            $("#" + divId).append(char);
-            textInside = $("#" + divId).html();
-            if (textInside == textToProcess) { 
-                if (count === 1) 
-                {    
-                    display(emotionText)
-                }
-                if (doneTyping === true &&
-                    count === 2) 
-                {
-                    display(beautyText)
-                }
-                if (count === 3) {
-                    count = 0
-                }
-                doneTyping = true; }
-        }, addedTime);
-    }
-    //===============================================
-    let styleBubbleText = function (text) {
-        addedTime = 0;
-        textToProcess = text;
-        console.log(text)
-        doneTyping = false;
-        divId = count
-        for (i = 0; i < textToProcess.length; i++) {
-            addedTime += 28;
-            actionBarSetTimeout(textToProcess[i], addedTime);
+function actionBarSetTimeout(char, addedTime) {
+    setTimeout(function () {
+
+        $("#" + divId).append(char);
+        textInside = $("#" + divId).html();
+        if (textInside == textToProcess) {
+            if (count === 1) {
+                display(emotionText)
+            }
+            if (doneTyping === true &&
+                count === 2) {
+                display(beautyText)
+            }
+            if (count === 3) {
+                count = 0
+            }
+            doneTyping = true;
         }
-
-
+    }, addedTime);
+}
+//===============================================
+let styleBubbleText = function (text) {
+    addedTime = 0;
+    textToProcess = text;
+    console.log(text)
+    doneTyping = false;
+    divId = count
+    for (i = 0; i < textToProcess.length; i++) {
+        addedTime += 50;
+        actionBarSetTimeout(textToProcess[i], addedTime);
     }
+
+
+}
 
 
