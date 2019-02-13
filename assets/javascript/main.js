@@ -67,8 +67,8 @@ function selectImage(input) {
         //图片的base64数据
         const base64Image = e.target.result;
 
-        //显示图片
-        //修复显示方向不对问题
+        //display image
+        //fix the orientation
         fixOrientention(base64Image, imageView);
 
         /*
@@ -79,8 +79,7 @@ function selectImage(input) {
 
         */
 
-        // 以二进制的方式上传图片
-        // 将base64转为二进制
+        // turn base64 to binary
         let imageData = facepp.dataURItoBlob(base64Image);
         //根据个人需求填写的参数,这里全部写上了,包括年龄性别等,详情看官方文档
         let attributes = 'gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus';
@@ -88,7 +87,7 @@ function selectImage(input) {
         let dataDic = { 'image_file': imageData, 'return_landmark': 2, 'return_attributes': attributes };
 
 
-        //调用接口，检测人脸
+        //make request to the face detect SDK
         facepp.detectFace(dataDic, success, failed);
     }
 }
@@ -155,9 +154,10 @@ function fixOrientention(base64Image, imageView) {
     };
     image.src = base64Image;
   }
-//if succeed
+
+//if succeeded
 function success(e) {
-    //显示结果
+    //display result
     console.log(e);
     console.log("run")
     var emotionNameArray = [
@@ -463,7 +463,7 @@ function textGenerate(e) {
     display(displayArrays) 
 }
     
-//Yuwen's way to display the lines letter by letter
+//Yuwen's way to display the lines letter by letter and bubble by bubble
     function display(displayArrays) {
         a = a+1
         if (a < displayArrays.length) {
@@ -500,8 +500,6 @@ appendChatBox = function () {
 
 
 
-
-//===============================================
 
 
 

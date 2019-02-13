@@ -1,4 +1,4 @@
-//api接口地址
+//api URL
 //base url for China
 
 const FACE_HOST_CN = "https://api-cn.faceplusplus.com/";
