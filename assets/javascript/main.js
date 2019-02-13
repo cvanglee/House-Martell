@@ -1,69 +1,30 @@
 var response = {}
-
-function gitGiphy(emotion){
+var highestEmotion;
+function gitGiphy(emotion) {
     $("#emoji").empty();
     console.log("hello");
-  var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FH40z8RM9VJhyEk0ML5R4TFfhpuV7uPV&q="+ emotion +"&limit=100"
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response){
-      let results = response.data;
-      // random index for picking a giphy
-      let ranIndex = Math.floor(Math.random() * 100);
-      // random index for picking a saying
-      let sIndex = Math.floor(Math.random() * 5);
-      // creating sayings object
-      var sayings = {
-        happiness:["Yay!","Whoever is happy will make others happy","The pursuit of happiness is real","Be happy with what you have. Be excited about what you want","Have only two kinds of days: happy and hysterically happy"],
-        anger:["Argh..","Anger is a short madness","Don't get your back up","If you kick a stone in anger you will hurt your foot","He who angers you conquers you"],
-        disgust:["Yuck!","Gross","distasteful","filthy","nasty"],
-        fear:["Fear is only as deep as the mind allows","Fear is faith that it won't work out","Fear is a darkroom where negatives develop","But fear doesn't need doors and windows. It works from the inside", "Fear defeats more people than any other one thing in the world"],
-        neutral:["ehhh...","The end doesn't justify the means","A rule isn't unfair if it applies to everyone","Give good and get good","If we do not maintain justice, justice will not maintain us"],
-        sadness:["Tears come from the heart and not from the brain","You cannot protect yourself from sadness without protecting yourself from happiness.","Breathing is hard. When you cry so much, it makes you realize that breathing is hard.","Things change. And friends leave. Life doesn't stop for anybody.","Remember, it will get better!"],
-        surprise:["Surprise!","Expect nothing. Live frugally on surprise.","Do not know yourself. I want to continue to surprise me.   ","Wait long enough, and people will surprise and impress you","The idea of waiting for something makes it more exciting"],
-      };
-      console.log(ranIndex);
-      console.log(results);
-      // getting a random giphy from the 10 that we go back
-      var emoticon = results[ranIndex].images.fixed_height.url;
-      // creating the image tag and adding in the src
-      var emoticonImage = $("<img>")
-      emoticonImage.attr("src", emoticon);
-      // creating the Div to display the saying
-      var sayingDiv = $('<div>')
-      // picking the text to display 
-      if(emotion==='happiness'){
-      sayingDiv.text(sayings.happiness[sIndex]);
-      }
-      else if(emotion==='anger'){
-      sayingDiv.text(sayings.anger[sIndex]);
-      }
-      else if(emotion==='disgust'){
-      sayingDiv.text(sayings.disgust[sIndex]);
-      }
-      else if(emotion==='fear'){
-      sayingDiv.text(sayings.fear[sIndex]);
-      }
-      else if(emotion==='neutral'){
-        sayingDiv.text(sayings.neutral[sIndex]);
-      }
-      else if(emotion==='sadness'){
-      sayingDiv.text(sayings.sadness[sIndex]);
-      }
-      else if(emotion==='surprise'){
-      sayingDiv.text(sayings.surprise[sIndex]);
-      }
-      else {
-      sayingDiv.text('weird emotion');
-      }
-      // displaying giphy and text
-      $("#avatar").append(emoticonImage);
-      $("#avatar").append(sayingDiv);
-      
-      console.log(emoticon);
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FH40z8RM9VJhyEk0ML5R4TFfhpuV7uPV&q=" + emotion + "&limit=100"
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        let results = response.data;
+        // random index for picking a giphy
+        let ranIndex = Math.floor(Math.random() * 100);
+        console.log(ranIndex);
+        console.log(results);
+        // getting a random giphy from the 10 that we go back
+        var emoticon = results[ranIndex].images.fixed_height.url;
+        // creating the image tag and adding in the src
+        var emoticonImage = $("<img>")
+        emoticonImage.attr("src", emoticon);
+        // displaying giphy and text
+        console.log("is running");
+        $("#gif").attr("src", emoticon);
+        $("#welcome").remove();
     });
-  }
+}
+
 
 //Click and select a photo
 function clickInput() {
@@ -148,7 +109,6 @@ function success(e) {
     emotionValueArray.push(e.faces[0].attributes.emotion.surprise)
 
     console.log(emotionNameArray)
-
     console.log(emotionValueArray)
 }
 
@@ -243,8 +203,6 @@ function emotionCompare(e) {
         "sadness",
         "surprise"
     ]
-
-
     var emotionValueArray = [];
     emotionValueArray.push(e.faces[0].attributes.emotion.anger)
     emotionValueArray.push(e.faces[0].attributes.emotion.disgust)
@@ -254,77 +212,169 @@ function emotionCompare(e) {
     emotionValueArray.push(e.faces[0].attributes.emotion.sadness)
     emotionValueArray.push(e.faces[0].attributes.emotion.surprise)
     let highest = 0;
-    let highestEmotion = 0;
     for (let i = 0; i < emotionValueArray.length; i++) {
         if (emotionValueArray[i] > highest) {
             highest = emotionValueArray[i];
             highestEmotion = emotionNameArray[i];
         }
     };
-    
+    gitGiphy(highestEmotion);
     console.log(highestEmotion);
     console.log(emotionNameArray)
     console.log(emotionValueArray)
 }
-    //age 
-    //create a function to decide the texts we need to return
-    function textGenerate(e) {
-        var age = e.faces[0].attributes.age.value
-        var gender = e.faces[0].attributes.gender.value
-        var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score)/2
-        var ageText
-        var genderText
-        var glassesText
-        var beautyText
-        var mouthText
 
-        //generate ageText
-        if (age > 0 && age <= 20) {
-            ageText = "placeholder0to20"
-        }
-        if (age > 20 && age <= 30) {
-            ageText = "placeholder20to30"
-        }
-        if (age > 30 && age <= 40) {
-            ageText = "placeholder30to40"
-        }
-        if (age > 40 && age <= 50) { 
-            ageText = "placeholder40to50"
-        }
-        
+//age 
+//create a function to decide the texts we need to return
+function textGenerate(e) {
+    // declare variables to store data from the face++ api
+    var age = e.faces[0].attributes.age.value;
+    var gender = e.faces[0].attributes.gender.value;
+    var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score) / 2;
+    
+    // creating sayings objects for all of the texts we have
+    var ageArrays = {
+        twentyUnder: ["Be yourself; everyone else is already taken", "You have to be odd to be number 1", "Children are the leading cause of old age."],
+        thirtyUnder: ["Success in your twenties is more about setting the table than enjoying the feast", "Being an adult is just walking around wondering what you're forgetting.", "Remember how when you were little you could just rip off your diaper and run around naked and everyone thought it was funny?"],
+        fortyUnder: ["Surfing while middle-aged requires a lot of forty, dude.", "As you get older, three things happen: The first is your memory goes, and I can't remember the other two", "Transitional age is when during a hot day you don't know what you want – ice cream or beer."],
+        fiftyUnder: ["Middle age is when you still believe you’ll feel better in the morning", "You are twice as sexy as two 20 somethings.", "Middle age is when you're faced with two temptations and you choose the one that will get you home by nine o'clock"],
+        sixtyOver: ["The older you get, the earlier it gets late.", "Pastry chefs know that old age crepes up on you.", "You're old enough to remember when emojis were called hieroglyphics."]
+    };
+    var beautyArrays = {
+        quarter1: ["If you were a chicken", "you'd be impeccable. , I wish you were cross-eyed so I could see you twice.", "Beauty is only skin deep ...but ugly goes all the way to the bone!"],
+        quarter2: ["Is your body from McDonald's? Cause I'm lovin' it!", "smile is an inexpensive way to improve your looks", "I know milk does a body good, but damn girl, how much have you been drinking?"],
+        quarter3: ["If you were a library book, I’d check you out!", "Does your left eye hurt? Because you’ve been looking right all day.", "There's no real difference between me and George Clooney."],
+        quarter4: ["Are you French, because Eiffel for you!"],
+    };
+    var emotionArrays = {
+        happiness: ["Yay!", "Whoever is happy will make others happy", "The pursuit of happiness is real", "Be happy with what you have. Be excited about what you want", "Have only two kinds of days: happy and hysterically happy"],
+        anger: ["Argh..", "Anger is a short madness", "Don't get your back up", "If you kick a stone in anger you will hurt your foot", "He who angers you conquers you"],
+        disgust: ["Yuck!", "Gross", "distasteful", "filthy", "nasty"],
+        fear: ["Fear is only as deep as the mind allows", "Fear is faith that it won't work out", "Fear is a darkroom where negatives develop", "But fear doesn't need doors and windows. It works from the inside", "Fear defeats more people than any other one thing in the world"],
+        neutral: ["ehhh...", "The end doesn't justify the means", "A rule isn't unfair if it applies to everyone", "Give good and get good", "If we do not maintain justice, justice will not maintain us"],
+        sadness: ["Tears come from the heart and not from the brain", "You cannot protect yourself from sadness without protecting yourself from happiness.", "Breathing is hard. When you cry so much, it makes you realize that breathing is hard.", "Things change. And friends leave. Life doesn't stop for anybody.", "Remember, it will get better!"],
+        surprise: ["Surprise!", "Expect nothing. Live frugally on surprise.", "Do not know yourself. I want to continue to surprise me.   ", "Wait long enough, and people will surprise and impress you", "The idea of waiting for something makes it more exciting"],
+    };
+    var ageText
+    var genderText
+    var beautyText
+    var emotionText
+  
 
-        //generate genderText
-        if (gender === "male" && age > 0 && age <= 29) {
-            genderText = "Dude"
-        };
-        if (gender === "male" && age >= 30) {
-            genderText = "Sir"
-        };
-        if (gender === "female" && age > 0 && age <= 25) {
-            genderText = "Girl"
-        };
-        if (gender === "female" && age >= 26) {
-            genderText = "Ma'am"
-        };
-                
-        //beautyText
-        if(beautyScore > 0 && beautyScore <= 25){
-            beautyText = "placeholder for beauty"
-        };
-        if(beautyScore > 25 && beautyScore <= 50){
-            beautyText = "placeholder for beauty"
-        };
-        if(beautyScore > 50 && beautyScore <= 75){
-            beautyText = "placeholder for beauty"
-        };
-        if(beautyScore > 75 && beautyScore <= 100){
-            beautyText = "placeholder for beauty"
-        };
+
+    //generate genderText
+    if (gender === "Male" && age > 0 && age <= 29) {
+        genderText = "Dude, "
+    };
+    if (gender === "Male" && age >= 30) {
+        genderText = "Sir, "
+    };
+    if (gender === "Female" && age > 0 && age <= 25) {
+        genderText = "Girl, "
+    };
+    if (gender === "Female" && age >= 26) {
+        genderText = "Ma'am, "
+    };
+
+    //generate ageText
+    if (age > 0 && age <= 20) {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        ageText = genderText + ageArrays.twentyUnder[randNum];
+    }
+    if (age > 20 && age <= 30) {
+        randNum = Math.floor(Math.random(ageArrays.thirtyUnder.length));
+        ageText = genderText + ageArrays.thirtyUnder[randNum];
+    }
+    if (age > 30 && age <= 40) {
+        randNum = Math.floor(Math.random(ageArrays.fortyUnder.length));
+        ageText = genderText + ageArrays.fortyUnder[randNum];
+    }
+    if (age > 40 && age <= 50) {
+        randNum = Math.floor(Math.random(ageArrays.fiftyUnder.length));
+        ageText = genderText + ageArrays.fiftyUnder[randNum];
+    }
+    if (age > 60) {
+        randNum = Math.floor(Math.random(ageArrays.sixtyOver.length));
+        ageText = genderText + ageArrays.sixtyOver[randNum];
+    }
+
+    // picking the emotion text to display 
+    if (highestEmotion === 'happiness') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.happiness[randNum]);
+    }
+    else if (highestEmotion === 'anger') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.anger[randNum]);
+    }
+    else if (highestEmotion === 'disgust') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.disgust[randNum]);
+    }
+    else if (highestEmotion === 'fear') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.fear[randNum]);
+    }
+    else if (highestEmotion === 'neutral') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.neutral[randNum]);
+    }
+    else if (highestEmotion === 'sadness') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.sadness[randNum]);
+    }
+    else if (highestEmotion === 'surprise') {
+        randNum = Math.floor(Math.random(ageArrays.twentyUnder.length));
+        emotionText = (emotionArrays.surprise[randNum]);
+    }
+    else {
+        emotionText = ('weird emotion');
     }
 
 
 
 
+
+    //beautyText
+    if (beautyScore > 0 && beautyScore <= 25) {
+        beautyText = (beautyArrays.quarter1[randNum])
+    };
+    if (beautyScore > 25 && beautyScore <= 50) {
+        beautyText = (beautyArrays.quarter2[randNum])
+    };
+    if (beautyScore > 50 && beautyScore <= 75) {
+        beautyText = (beautyArrays.quarter3[randNum])
+    };
+    if (beautyScore > 75 && beautyScore <= 100) {
+        beautyText = (beautyArrays.quarter4[randNum])
+    };
+    console.log(ageText)
+    console.log(emotionText)
+    console.log(beautyText)
+
+    setTimeout(function(){
+        appendChatBox(ageText);
+    })
+    setTimeout(function(){
+        appendChatBox(emotionText);
+    },2000)
+    setTimeout(function(){
+        appendChatBox(beautyText);
+    },4000)
+    
+    
+
+}
+
+
+// create a function to append chat bubble with text to the screen
+appendChatBox = function (text) {
+    $("#text").append(
+        "<div class='speech-bubble'>" +
+        text +
+        "</div>"
+    )
+}
 
 
 

@@ -307,17 +307,6 @@ function FACEPP(apikey, apisecret, isChina) {
             console.log(e)
             emotionCompare(e)
             textGenerate(e);
-            console.log("age is: " + age)
-            console.log("gender is: " + gender)
-            console.log("beautyScore is: " + beautyScore)
-            console.log("mouth status is: " + mouth)
-            console.log("glasses status is: " + glasses)
-
-
-
-
-
-
         })
     }
 }
