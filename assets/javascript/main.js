@@ -489,7 +489,6 @@ function textGenerate(e) {
                     }
                 }, addedTime);
             }
-            bubbleSet = true;
 
         }
 
