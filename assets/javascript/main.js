@@ -1,5 +1,13 @@
 var response = {}
 var highestEmotion;
+var count = 0;
+var doneTyping = false;
+var ageText
+var genderText
+var beautyText
+var emotionText
+
+
 function gitGiphy(emotion) {
     $("#emoji").empty();
     console.log("hello");
@@ -21,7 +29,6 @@ function gitGiphy(emotion) {
         // displaying giphy and text
         console.log("is running");
         $("#gif").attr("src", emoticon);
-        $("#welcome").remove();
     });
 }
 
@@ -231,7 +238,7 @@ function textGenerate(e) {
     var age = e.faces[0].attributes.age.value;
     var gender = e.faces[0].attributes.gender.value;
     var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score) / 2;
-    
+
     // creating sayings objects for all of the texts we have
     var ageArrays = {
         twentyUnder: ["Be yourself; everyone else is already taken", "You have to be odd to be number 1", "Children are the leading cause of old age."],
@@ -255,11 +262,7 @@ function textGenerate(e) {
         sadness: ["Tears come from the heart and not from the brain", "You cannot protect yourself from sadness without protecting yourself from happiness.", "Breathing is hard. When you cry so much, it makes you realize that breathing is hard.", "Things change. And friends leave. Life doesn't stop for anybody.", "Remember, it will get better!"],
         surprise: ["Surprise!", "Expect nothing. Live frugally on surprise.", "Do not know yourself. I want to continue to surprise me.   ", "Wait long enough, and people will surprise and impress you", "The idea of waiting for something makes it more exciting"],
     };
-    var ageText
-    var genderText
-    var beautyText
-    var emotionText
-  
+
 
 
     //generate genderText
@@ -351,33 +354,61 @@ function textGenerate(e) {
     console.log(ageText)
     console.log(emotionText)
     console.log(beautyText)
-
-    setTimeout(function(){
-        appendChatBox(ageText);
-    })
-    setTimeout(function(){
-        appendChatBox(emotionText);
-    },2000)
-    setTimeout(function(){
-        appendChatBox(beautyText);
-    },4000)
-    
-    
-
+    display(ageText)
 }
 
-
-// create a function to append chat bubble with text to the screen
-appendChatBox = function (text) {
-    $("#text").append(
-        "<div class='speech-bubble'>" +
-        text +
-        "</div>"
-    )
-}
+    function display(text) {
+        console.log("running!")
+        appendChatBox();
+        styleBubbleText(text)
+    }
 
 
 
+    // create a function to append chat bubble with text to the screen
+    appendChatBox = function () {
+        count++
+        $("#text").append(
+            '<div id = "' + count + '" class= "speech-bubble"></div>'
+        )
+    }
 
+
+
+    function actionBarSetTimeout(char, addedTime) {
+        setTimeout(function () {
+            
+            $("#" + divId).append(char);
+            textInside = $("#" + divId).html();
+            if (textInside == textToProcess) { 
+                if (count === 1) 
+                {    
+                    display(emotionText)
+                }
+                if (doneTyping === true &&
+                    count === 2) 
+                {
+                    display(beautyText)
+                }
+                if (count === 3) {
+                    count = 0
+                }
+                doneTyping = true; }
+        }, addedTime);
+    }
+    //===============================================
+    let styleBubbleText = function (text) {
+        addedTime = 0;
+        textToProcess = text;
+        console.log(text)
+        doneTyping = false;
+        divId = count
+        for (i = 0; i < textToProcess.length; i++) {
+            addedTime += 28;
+            actionBarSetTimeout(textToProcess[i], addedTime);
+        }
+
+
+    }
 
 
