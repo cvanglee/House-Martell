@@ -464,6 +464,7 @@
         if (debug) console.log("Got file of length " + file.byteLength);
         if ((dataView.getUint8(0) != 0xFF) || (dataView.getUint8(1) != 0xD8)) {
             if (debug) console.log("Not a valid JPEG");
+            $("#welcome").text("I couldn't read that image. Try another one, please!")
             return false; // not a valid jpeg
         }
 
