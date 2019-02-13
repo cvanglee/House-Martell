@@ -301,29 +301,20 @@ function FACEPP(apikey, apisecret, isChina) {
             data: formData,
             processData: false,
             contentType: false,
+            error: function() {
+                $("#welcome").text("I couldn't read that image. Try another one, please!")
+            },
             timeout: 20000,//20秒超时时间
             // }).done(success).fail(failed);
         }).then(function (e) {
             console.log(e)
+            $("#text").empty();
             emotionCompare(e)
-            var age = e.faces[0].attributes.age.value
-            var gender = e.faces[0].attributes.gender.value
-            var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score)/2
-            var glasses = e.faces[0].attributes.glass.value
-            var mouth = e.faces[0].attributes.mouthstatus.open
-
-            console.log("age is: " + age)
-            console.log("gender is: " + gender)
-            console.log("beautyScore is: " + beautyScore)
-            console.log("mouth status is: " + mouth)
-            console.log("glasses status is: " + glasses)
-
-
-
-
-
-
+            textGenerate(e);
         })
     }
 }
 
+function error() {
+    $("#welcome").text("That didn't work well. Try another one, please!")
+}
