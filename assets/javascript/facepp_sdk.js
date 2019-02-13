@@ -305,6 +305,7 @@ function FACEPP(apikey, apisecret, isChina) {
             // }).done(success).fail(failed);
         }).then(function (e) {
             console.log(e)
+            $("#text").empty();
             emotionCompare(e)
             textGenerate(e);
         })
