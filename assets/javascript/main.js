@@ -6,6 +6,8 @@ var ageText
 var genderText
 var beautyText
 var emotionText
+var a = -1;
+var count = 0;
 
 
 function gitGiphy(emotion) {
@@ -91,6 +93,68 @@ function selectImage(input) {
     }
 }
 
+//fix image orientation problem
+function fixOrientention(base64Image, imageView) {
+    const image = new Image();
+    image.onload = () => {
+      const canvas = document.createElement('canvas');
+      const initSize = image.src.length;
+      let width = image.naturalWidth;
+      let height = image.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // 旋转图片操作
+      EXIF.getData(image, function () {
+        const orientation = EXIF.getTag(this, 'Orientation');
+        console.log(`orientation:${orientation}`);
+        switch (orientation) {
+          // 正常状态
+          case 1:
+            console.log('旋转0°');
+            canvas.height = height;
+            canvas.width = width;
+            ctx.drawImage(image, 0, 0, width, height);
+            break;
+          // 旋转90度
+          case 6:
+            console.log('旋转90°');
+            canvas.height = width;
+            canvas.width = height;
+            ctx.rotate(Math.PI / 2);
+            ctx.translate(0, -height);
+            ctx.drawImage(image, 0, 0, width, height);
+            break;
+          // 旋转180°
+          case 3:
+            console.log('旋转180°');
+            canvas.height = height;
+            canvas.width = width;
+            ctx.rotate(Math.PI);
+            ctx.translate(-width, -height);
+            ctx.drawImage(image, 0, 0, width, height);
+            break;
+          // 旋转270°
+          case 8:
+            console.log('旋转270°');
+            canvas.height = width;
+            canvas.width = height;
+            ctx.rotate(-Math.PI / 2);
+            ctx.translate(-width, 0);
+            ctx.drawImage(image, 0, 0, width, height);
+            break;
+          default:
+            console.log('default 旋转0°');
+            canvas.height = height;
+            canvas.width = width;
+            ctx.drawImage(image, 0, 0, width, height);
+            break;
+        }
+      });
+      var newBase64 = canvas.toDataURL('image/jpeg', 1.0);
+      imageView.src = newBase64;
+    };
+    image.src = base64Image;
+  }
 //if succeed
 function success(e) {
     //显示结果
@@ -253,7 +317,7 @@ function textGenerate(e) {
             "Are you made of copper and tellurium? Because you're CuTe",
             "What's a nice ghoul like you doing in a crypt like this?",
             "Adolescence is that period in a kid’s life when parents become more difficult.",
-            "Zeal: A certain nervous disorder afflicting the young and inexperienced.",
+            "A certain nervous disorder afflicting the young and inexperienced.",
             "Old age is like everything else; to make a success of it, you’ve got to start young."
         ],
 
@@ -471,7 +535,6 @@ function textGenerate(e) {
 }
     
 //Yuwen's way to display the lines letter by letter
-    var a = -1;
     function display(displayArrays) {
         a = a+1
         if (a < displayArrays.length) {
@@ -489,6 +552,10 @@ function textGenerate(e) {
                     }
                 }, addedTime);
             }
+
+        } else {
+            count = 0;
+            a = -1;
         }
 
     }
