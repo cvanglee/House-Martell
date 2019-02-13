@@ -306,23 +306,7 @@ function FACEPP(apikey, apisecret, isChina) {
         }).then(function (e) {
             console.log(e)
             emotionCompare(e)
-            var age = e.faces[0].attributes.age.value
-            var gender = e.faces[0].attributes.gender.value
-            var beautyScore = (e.faces[0].attributes.beauty.male_score + e.faces[0].attributes.beauty.female_score)/2
-            var glasses = e.faces[0].attributes.glass.value
-            var mouth = e.faces[0].attributes.mouthstatus.open
-
-            console.log("age is: " + age)
-            console.log("gender is: " + gender)
-            console.log("beautyScore is: " + beautyScore)
-            console.log("mouth status is: " + mouth)
-            console.log("glasses status is: " + glasses)
-
-
-
-
-
-
+            textGenerate(e);
         })
     }
 }
