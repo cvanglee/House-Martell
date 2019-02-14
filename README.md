@@ -2,6 +2,8 @@
 
 GiphyToMe is a facial recognition application where you may upload a photo in order to generate gifs and text associated with the physical attributes recognized through your upload.  
 
+![](assets/images/giphyToMe.png)
+
 ## Getting Started
 
 To start this process, visit https://giphy-to-me.herokuapp.com/index.html and upload a photo. As soon as you have selected your photo, a gif and randomly generated texts will populate the screen. You may also share your results by clicking the "Share" button underneath the populated text. 
@@ -18,6 +20,16 @@ You may upload a photo or many. The physical attributes recognized in your photo
 
 You may want to upload another photo to retrieve a new gif and set of correlating text. Face++ has many features and can assess for many physical attributes, but we are pulling only age, beauty, and gender to generate text.
 
+### Notable code snippets
+
+The code snippet we showed the class is in our main.js file, from lines 470 to 514. This snippet displays the text letter by letter, and chat bubble by bubble. 
+
+### Notable blocks to functionality
+
+Firstly, we had trouble displaying the text letter by letter because we had to accertain that the first line would finish before the second bubble would append to the screen. 
+
+Secondly, our upload image button was difficult to style. We basically could not, so we created an inviable input div for the image under the upload button. This guaranteed both functionality and asthetics. 
+
 ## Deployment
 
 This site is accessible by https://giphy-to-me.herokuapp.com/index.html. Our GitHub repository is https://github.com/cvanglee/House-Martell.
@@ -28,6 +40,8 @@ This site is accessible by https://giphy-to-me.herokuapp.com/index.html. Our Git
 * [Google Fonts](https://fonts.googleapis.com/css?family=Oxygen|Righteous|Roboto) - Font Styling
 * [Giphy](https://media.giphy.com/media/GqtNlBsWoEXDy/giphy.gif) - API used to generate random gifs
 * [Face++](https://api-us.faceplusplus.com/) - API used to analyze photos
+* [Share Button](https://sharingbuttons.io/) - Share buttons used
+* [Chat Bubble](https://leaverou.github.io/bubbly/) - Chat bubbles used
 
 ## Authors
 
