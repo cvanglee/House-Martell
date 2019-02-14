@@ -67,8 +67,8 @@ function selectImage(input) {
         //图片的base64数据
         const base64Image = e.target.result;
 
-        //显示图片
-        //修复显示方向不对问题
+        //display image
+        //fix the orientation
         fixOrientention(base64Image, imageView);
 
         /*
@@ -79,8 +79,7 @@ function selectImage(input) {
 
         */
 
-        // 以二进制的方式上传图片
-        // 将base64转为二进制
+        // turn base64 to binary
         let imageData = facepp.dataURItoBlob(base64Image);
         //根据个人需求填写的参数,这里全部写上了,包括年龄性别等,详情看官方文档
         let attributes = 'gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus';
@@ -88,7 +87,7 @@ function selectImage(input) {
         let dataDic = { 'image_file': imageData, 'return_landmark': 2, 'return_attributes': attributes };
 
 
-        //调用接口，检测人脸
+        //make request to the face detect SDK
         facepp.detectFace(dataDic, success, failed);
     }
 }
@@ -155,9 +154,10 @@ function fixOrientention(base64Image, imageView) {
     };
     image.src = base64Image;
   }
-//if succeed
+
+//if succeeded
 function success(e) {
-    //显示结果
+    //display result
     console.log(e);
     console.log("run")
     var emotionNameArray = [
@@ -188,77 +188,6 @@ function failed(e) {
     let textView = document.getElementById('text');
     textView.innerText = JSON.stringify(e);
 }
-
-
-function fixOrientention(base64Image, imageView) {
-    const image = new Image();
-
-    image.onload = () => {
-        const canvas = document.createElement('canvas');
-
-        const initSize = image.src.length;
-
-        let width = image.naturalWidth;
-        let height = image.naturalHeight;
-
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // 旋转图片操作
-        EXIF.getData(image, function () {
-            const orientation = EXIF.getTag(this, 'Orientation');
-            console.log(`orientation:${orientation}`);
-            switch (orientation) {
-                // 正常状态
-                case 1:
-                    console.log('旋转0°');
-                    canvas.height = height;
-                    canvas.width = width;
-                    ctx.drawImage(image, 0, 0, width, height);
-                    break;
-                // 旋转90度
-                case 6:
-                    console.log('旋转90°');
-                    canvas.height = width;
-                    canvas.width = height;
-                    ctx.rotate(Math.PI / 2);
-                    ctx.translate(0, -height);
-                    ctx.drawImage(image, 0, 0, width, height);
-                    break;
-                // 旋转180°
-                case 3:
-                    console.log('旋转180°');
-                    canvas.height = height;
-                    canvas.width = width;
-                    ctx.rotate(Math.PI);
-                    ctx.translate(-width, -height);
-                    ctx.drawImage(image, 0, 0, width, height);
-                    break;
-                // 旋转270°
-                case 8:
-                    console.log('旋转270°');
-                    canvas.height = width;
-                    canvas.width = height;
-                    ctx.rotate(-Math.PI / 2);
-                    ctx.translate(-width, 0);
-                    ctx.drawImage(image, 0, 0, width, height);
-                    break;
-
-                default:
-                    console.log('default 旋转0°');
-                    canvas.height = height;
-                    canvas.width = width;
-                    ctx.drawImage(image, 0, 0, width, height);
-                    break;
-            }
-        });
-
-        var newBase64 = canvas.toDataURL('image/jpeg', 1.0);
-        imageView.src = newBase64;
-    };
-    image.src = base64Image;
-}
-
 
 
 //emotion
@@ -534,7 +463,7 @@ function textGenerate(e) {
     display(displayArrays) 
 }
     
-//Yuwen's way to display the lines letter by letter
+//Yuwen's way to display the lines letter by letter and bubble by bubble
     function display(displayArrays) {
         a = a+1
         if (a < displayArrays.length) {
@@ -571,8 +500,6 @@ appendChatBox = function () {
 
 
 
-
-//===============================================
 
 
 
