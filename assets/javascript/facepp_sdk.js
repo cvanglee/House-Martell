@@ -129,7 +129,9 @@ function FACEPP(apikey, apisecret, isChina) {
             processData: false,
             contentType: false,
             error: function() {
-                $("#welcome").text("I couldn't read that image. Try another one, please!")
+                $("#text").html(
+                    `<div class="speech-bubble">I couldn't read that image. Try another one, please!</div>`
+                );
             },
             timeout: 20000,//20秒超时时间
             // }).done(success).fail(failed);

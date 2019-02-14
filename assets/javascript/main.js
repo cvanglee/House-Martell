@@ -381,24 +381,33 @@ function textGenerate(e) {
     //generate ageText
     if (age > 0 && age <= 20) {
         randNum = random(ageArrays.twentyUnder)
-        ageText = genderText + ageArrays.twentyUnder[randNum];
+        ageText = ageArrays.twentyUnder[randNum];
+        genderAgeText = genderText + ageText;
     }
     if (age > 20 && age <= 30) {
         randNum = random(ageArrays.thirtyUnder)
-        ageText = genderText + ageArrays.thirtyUnder[randNum];
+        ageText = ageArrays.thirtyUnder[randNum];
+        genderAgeText = genderText + ageText;
+
     }
     if (age > 30 && age <= 40) {
         randNum = random(ageArrays.fortyUnder)
-        ageText = genderText + ageArrays.fortyUnder[randNum];
+        ageText = ageArrays.fortyUnder[randNum];
+        genderAgeText = genderText + ageText;
+
     }
     if (age > 40 && age <= 50) {
         randNum = random(ageArrays.fiftyUnder)
-        ageText = genderText + ageArrays.fiftyUnder[randNum];
+        ageText = ageArrays.fiftyUnder[randNum];
+        genderAgeText = genderText + ageText;
+
     }
-    if (age > 60) {
+    if (age > 50) {
         randNum = random(ageArrays.sixtyOver)
-        ageText = genderText + ageArrays.sixtyOver[randNum];
+        ageText = ageArrays.sixtyOver[randNum];
+        genderAgeText = genderText + ageText;
     }
+
 
     // picking the emotion text to display 
     if (highestEmotion === 'happiness') {
@@ -451,9 +460,15 @@ function textGenerate(e) {
         randNum = random(beautyArrays.quarter4)
         beautyText = (beautyArrays.quarter4[randNum])
     };
+    console.log(genderText)
+    console.log(ageText)
+    console.log(genderAgeText)
+    console.log(emotionText)
+    console.log(beautyText)
+
 
     var displayArrays = [
-        ageText,
+        genderAgeText,
         emotionText,
         beautyText,
     ]
