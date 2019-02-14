@@ -39,9 +39,9 @@ body{
 
 #text, #avatar{
     min-height: 120px;
-}
+} 
 
-#avatarimg {
+ #avatarimg {
     width: 100%;
 }
 
@@ -49,10 +49,10 @@ body{
     position: relative;
     min-height: 30px;
     padding: 5px 10px 5px 10px;
-	background: #F6FBFB;
+	  background: #F6FBFB;
     border-radius: .8em;
     margin: 15px 0px 15px 0px;
-    font-size: 18pt;
+    font-size: 2vw;
 }
 
 .speech-bubble:after {
