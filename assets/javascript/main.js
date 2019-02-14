@@ -276,7 +276,7 @@ function textGenerate(e) {
             "You're old enough to remember when emojis were called hieroglyphics.",
             "She is so old… she was the waitress at the last supper.",
             "Eighty is a wonderful age… especially if you’re ninety.",
-            "I don't need you to remind me of my age; I have a bladder to do that for me.",
+            "You don't need me to remind you of your age; your bladder will do that for you.",
             "You know you are getting older when “Happy Hour” is a nap."
         ]
     };
@@ -293,7 +293,7 @@ function textGenerate(e) {
 
         quarter2: [
             "Is your body from McDonald's? Cause I'm lovin' it!",
-            "I know milk does a body good, but girl, how much have you been drinking?",
+            "I know milk does a body good, so how much have you been drinking?",
             "Excuse me? Do you work at Little Ceasars? Cuz Ur Hot And I'm Ready.",
             "You’re beautiful no matter what anybody thinks.",
             "You're so pretty, you could be in a beer commercial.",
@@ -302,7 +302,6 @@ function textGenerate(e) {
         quarter3: [
             "If you were a library book, I’d check you out!",
             "Does your left eye hurt? Because you’ve been looking right all day.",
-            "There's no real difference between you and George Clooney.",
             "A pretty face doesn’t mean a pretty heart."
         ],
         
